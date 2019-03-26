@@ -1,0 +1,93 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.workex.userprofile"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //region Android Support Libraries
+
+    implementation SupportLib.support_annotations
+    implementation SupportLib.support_appcompat
+    implementation SupportLib.support_design
+    implementation SupportLib.support_cardview
+    implementation SupportLib.support_constraint_layout
+
+    //endregion
+
+    //region Kotlin Library
+
+    implementation KotlinLib.kotlin_stdlib_JDK8
+
+    //endregion
+
+    //region Rx Libraries
+
+    implementation Rx.rxjava
+    implementation Rx.rxandroid
+
+    //endregion
+
+    //region Retrofit Libraries
+
+    implementation Retrofit2Lib.retrofit
+    implementation Retrofit2Lib.retrofit_gson_converter
+    implementation Retrofit2Lib.retrofit_rxjava2_adapter
+    implementation Retrofit2Lib.okhttp_logging_interceptor
+
+    //endregion
+
+    //region RxBinding Libraries
+
+    implementation RxBinding2Lib.rxbinding
+    implementation RxBinding2Lib.rxbinding_recyclerview_v7
+    implementation RxBinding2Lib.rxbinding_design
+    implementation RxBinding2Lib.rxbinding_appcompat_v7
+
+    //endregion
+
+    //region Glide Libraries
+
+    implementation GlideLib.glide
+    implementation GlideLib.glide_okhttp3_interceptor
+
+    //endregion
+
+    //region GSON Library
+
+    implementation GSONLib.gson
+
+    //endregion
+
+    //region Testing Libraries
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    //endregion
+
+}
