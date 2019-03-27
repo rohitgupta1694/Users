@@ -82,6 +82,12 @@ dependencies {
 
     //endregion
 
+    //region Rounded ImageView Dependency
+
+    implementation 'com.joooonho:selectableroundedimageview:1.0.1'
+
+    //endregion
+
     //region Testing Libraries
 
     testImplementation 'junit:junit:4.12'

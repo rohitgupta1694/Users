@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
+
+        <com.joooonho.SelectableRoundedImageView
+            android:id="@+id/userProfileImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_profile_placeholder"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:sriv_left_bottom_corner_radius="20dp"
+            app:sriv_left_top_corner_radius="20dp"
+            app:sriv_right_bottom_corner_radius="20dp"
+            app:sriv_right_top_corner_radius="20dp" />
+
+        <TextView
+            android:id="@+id/userFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/grayMedium"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/userProfileImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Full Name" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/grayMedium"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@id/userFullName"
+            app:layout_constraintTop_toBottomOf="@id/userFullName"
+            tools:text="\@username" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
