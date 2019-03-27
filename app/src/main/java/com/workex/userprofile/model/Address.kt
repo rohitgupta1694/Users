@@ -1,7 +1,10 @@
 package com.workex.userprofile.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Address(@SerializedName("zip")
                    val zip: String = "",
                    @SerializedName("geo")
@@ -15,4 +18,4 @@ data class Address(@SerializedName("zip")
                    @SerializedName("street")
                    val street: String = "",
                    @SerializedName("state")
-                   val state: String = "")
+                   val state: String = "") : Parcelable

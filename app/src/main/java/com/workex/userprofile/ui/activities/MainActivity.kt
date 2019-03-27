@@ -1,10 +1,13 @@
 package com.workex.userprofile.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.workex.userprofile.BuildConfig
@@ -16,12 +19,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.user_list_item.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity(), UsersListAdapter.OnListItemClickListener {
 
@@ -103,7 +108,17 @@ class MainActivity : AppCompatActivity(), UsersListAdapter.OnListItemClickListen
     //region Implemented Methods
 
     override fun onItemClick(user: User) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d(TAG + "User Item Clicked: ", user.toString())
+
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        // Pass data object in the bundle and populate User details activity.
+        intent.putExtra(UserDetailsActivity.USER_DETAILS, user)
+        Pair.create<View, String>(userProfileImage, "profileImage")
+        val p1 = Pair.create<View, String>(userProfileImage, "profileImage")
+        val p2 = Pair.create<View, String>(userName, "userName")
+        val p3 = Pair.create<View, String>(userFullName, "userFullName")
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3)
+        startActivity(intent, options.toBundle())
     }
 
     //endregion

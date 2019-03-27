@@ -1,7 +1,10 @@
 package com.workex.userprofile.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class User(@SerializedName("lastName")
                 val lastName: String = "",
                 @SerializedName("website")
@@ -31,4 +34,4 @@ data class User(@SerializedName("lastName")
                 @SerializedName("email")
                 val email: String = "",
                 @SerializedName("status")
-                val status: Boolean = false)
+                val status: Boolean = false) : Parcelable

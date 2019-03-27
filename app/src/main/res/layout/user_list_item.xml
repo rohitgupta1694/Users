@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="8dp"
-    android:layout_marginTop="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
@@ -26,6 +26,7 @@
             android:layout_height="40dp"
             android:background="@drawable/circle_profile_placeholder"
             android:scaleType="centerCrop"
+            android:transitionName="profileImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:sriv_left_bottom_corner_radius="20dp"
@@ -39,8 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:textColor="@color/grayMedium"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
+            android:transitionName="userFullName"
             app:layout_constraintStart_toEndOf="@+id/userProfileImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Full Name" />
@@ -51,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textColor="@color/grayMedium"
-            android:textSize="14dp"
+            android:textSize="14sp"
+            android:transitionName="userName"
             app:layout_constraintStart_toStartOf="@id/userFullName"
             app:layout_constraintTop_toBottomOf="@id/userFullName"
             tools:text="\@username" />
