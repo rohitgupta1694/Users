@@ -3,8 +3,13 @@ package com.workex.userprofile.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.workex.userprofile.R
 import com.workex.userprofile.model.User
 import kotlinx.android.synthetic.main.user_list_item.view.*
@@ -42,11 +47,16 @@ class UsersListAdapter(
             user: User,
             listener: OnListItemClickListener
         ) {
-            itemView.userFullName.text = user.firstName + user.lastName
+            itemView.userFullName.text = user.firstName + " " + user.lastName
             itemView.userName.text = "@" + user.userName
 
+            ViewCompat.setTransitionName(itemView.userProfileImage, user.avatar)
+            ViewCompat.setTransitionName(itemView.userFullName, (user.firstName + user.lastName))
+            ViewCompat.setTransitionName(itemView.userName, user.userName)
             Glide.with(itemView.userProfileImage.context)
                 .load(user.avatar)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .priority(Priority.HIGH)
                 .into(itemView.userProfileImage)
 //                .apply(
 //                    RequestOptions()
@@ -55,7 +65,12 @@ class UsersListAdapter(
 //                        .priority(Priority.HIGH)
 //                )
 
-            itemView.setOnClickListener { listener.onItemClick(user) }
+            itemView.setOnClickListener {
+                listener.onItemClick(
+                    user, itemView.userProfileImage,
+                    itemView.userName, itemView.userFullName
+                )
+            }
         }
     }
 
@@ -65,7 +80,10 @@ class UsersListAdapter(
 
     interface OnListItemClickListener {
 
-        fun onItemClick(user: User)
+        fun onItemClick(
+            user: User, profileImageView: ImageView, userNameTextView: TextView,
+            userFullNameTextView: TextView
+        )
     }
 
     //endregion

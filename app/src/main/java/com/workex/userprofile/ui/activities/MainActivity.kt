@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.workex.userprofile.BuildConfig
@@ -107,17 +110,36 @@ class MainActivity : AppCompatActivity(), UsersListAdapter.OnListItemClickListen
 
     //region Implemented Methods
 
-    override fun onItemClick(user: User) {
-        Log.d(TAG + "User Item Clicked: ", user.toString())
-
+    override fun onItemClick(
+        user: User, profileImageView: ImageView,
+        userNameTextView: TextView, userFullNameTextView: TextView
+    ) {
         val intent = Intent(this, UserDetailsActivity::class.java)
         // Pass data object in the bundle and populate User details activity.
         intent.putExtra(UserDetailsActivity.USER_DETAILS, user)
-        Pair.create<View, String>(userProfileImage, "profileImage")
-        val p1 = Pair.create<View, String>(userProfileImage, "profileImage")
-        val p2 = Pair.create<View, String>(userName, "userName")
-        val p3 = Pair.create<View, String>(userFullName, "userFullName")
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, p1, p2, p3)
+        intent.putExtra(
+            UserDetailsActivity.EXTRA_USER_IMAGE_TRANSITION_NAME,
+            ViewCompat.getTransitionName(profileImageView)
+        )
+        intent.putExtra(
+            UserDetailsActivity.EXTRA_USER_NAME_TRANSITION_NAME,
+            ViewCompat.getTransitionName(userNameTextView)
+        )
+        intent.putExtra(
+            UserDetailsActivity.EXTRA_USER_FULL_NAME_TRANSITION_NAME,
+            ViewCompat.getTransitionName(userFullNameTextView)
+        )
+
+        val p1 = Pair.create<View, String>(
+            userProfileImage, ViewCompat.getTransitionName(profileImageView)
+        )
+        val p2 = Pair.create<View, String>(userName, ViewCompat.getTransitionName(userNameTextView))
+        val p3 = Pair.create<View, String>(
+            userFullName, ViewCompat.getTransitionName(userFullNameTextView)
+        )
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            this, p1, p2, p3
+        )
         startActivity(intent, options.toBundle())
     }
 
